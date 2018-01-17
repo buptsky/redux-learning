@@ -1,0 +1,9 @@
+{
+  "presets": [
+    "react-app"
+  ],
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-runtime"
+  ]
+}
