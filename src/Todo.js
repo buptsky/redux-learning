@@ -4,7 +4,8 @@ import { removeTodo, toggleTodo } from './store/actions/actions';
 
 @connect(
   (state) => ({
-    todos: state.todos,
+    todoList: state.todos.todoList,
+    loading: state.todos.isLoading,
     filter: state.filter
   }),
   { removeTodo, toggleTodo }
@@ -12,8 +13,8 @@ import { removeTodo, toggleTodo } from './store/actions/actions';
 class Todo extends React.Component {
 
   render() {
-    const { todos, filter } = this.props;
-    const filterTodos = todos.filter((item) => {
+    const { todoList, filter, loading } = this.props;
+    const filterTodos = todoList.filter((item) => {
       switch (filter) {
         case 'all':
           return true;
@@ -28,17 +29,26 @@ class Todo extends React.Component {
     return (
       <div style={{ marginTop: 20, minHeight: 150 }}>
         {
-          !filterTodos.length && (
+          (!loading && !filterTodos.length) && (
             <div>
-              <div style={{textAlign: 'center'}}>
-                <i className="icon-shocked" style={{lineHeight: '150px', color: '#666'}}/>
+              <div style={{ textAlign: 'center' }}>
+                <i className="icon-shocked" style={{ lineHeight: '150px', color: '#666' }} />
                 <span className="tip">这里什么都没有</span>
               </div>
             </div>
           )
         }
         {
-          filterTodos.map((item) => {
+          loading && (
+            <div>
+              <div style={{ textAlign: 'center' }}>
+                <i className="icon-spinner9 loading" style={{ lineHeight: '150px' }} />
+              </div>
+            </div>
+          )
+        }
+        {
+          !loading && filterTodos.map((item) => {
             return (
               <div className="todo-list" key={item.id}>
                 <i

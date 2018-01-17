@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import reduxLogo from './asset/redux.png';
 import Todo from './Todo';
-import { addTodo, removeTodo, toggleTodo, setFilter } from './store/actions/actions';
+import { addTodo, addTodoAsync, removeTodo, toggleTodo, setFilter } from './store/actions/actions';
 
 @connect(
   (state) => ({
-    todos: state.todos,
+    todoList: state.todos.todoList,
     filter: state.filter
   }),
-  { addTodo, removeTodo, toggleTodo, setFilter }
+  { addTodo, addTodoAsync, removeTodo, toggleTodo, setFilter }
 )
 class App extends React.Component {
   constructor(props) {
@@ -20,17 +20,21 @@ class App extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.saveToLocal(nextProps.todos, nextProps.filter);
+    this.saveToLocal(nextProps.todoList, nextProps.filter);
   }
 
-  saveToLocal = (todos, filter) => {
-    localStorage.setItem('redux_learning_todos', JSON.stringify(todos));
+  saveToLocal = (todoList, filter) => {
+    localStorage.setItem('redux_learning_todoList', JSON.stringify(todoList));
     localStorage.setItem('redux_learning_filter', filter);
   }
 
-  onSubmit = () => {
+  onSubmit = (type) => {
     if (!this.state.inputValue.trim()) return;
-    this.props.addTodo(this.state.inputValue);
+    if (type === 'async') {
+      this.props.addTodoAsync(this.state.inputValue);
+    } else {
+      this.props.addTodo(this.state.inputValue);
+    }
     this.setState({
       inputValue: ''
     });
@@ -43,7 +47,7 @@ class App extends React.Component {
   }
 
   goGithub = () => {
-    const url = 'https://github.com/buptsky';
+    const url = 'https://github.com/buptsky/redux-learning';
     window.open(url);
   }
 
@@ -78,13 +82,13 @@ class App extends React.Component {
             />
             <i
               className="icon-plus"
-              onClick={this.onSubmit}
-              style={{marginRight: 10}}
+              onClick={() => this.onSubmit()}
+              style={{ marginRight: 10 }}
               title="同步添加"
             />
             <i
               className="icon-hour-glass"
-              onClick={this.onSubmit}
+              onClick={() => this.onSubmit('async')}
               title="异步添加"
             />
           </div>

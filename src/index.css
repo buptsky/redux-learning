@@ -106,6 +106,15 @@ input:focus {
   margin-right: 0;
 }
 
+.loading {
+  animation: loading 0.3s infinite forwards linear;
+}
+
+@keyframes loading {
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(180deg)}
+}
+
 /*底部导航*/
 .github {
   position: fixed;
