@@ -1,5 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
+import { connect } from './mini-redux/react-redux';
 import { removeTodo, toggleTodo } from './store/actions/actions';
 
 @connect(
@@ -13,6 +14,7 @@ import { removeTodo, toggleTodo } from './store/actions/actions';
 class Todo extends React.Component {
 
   render() {
+    console.log(this.props);
     const { todoList, filter, loading } = this.props;
     const filterTodos = todoList.filter((item) => {
       switch (filter) {

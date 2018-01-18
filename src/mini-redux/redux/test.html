@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  let dispatch = function () {
+    console.log(1);
+  }
+  let mid = {dispath: dispatch}
+  dispatch = function () {
+    console.log(2);
+  }
+  mid.dispath();
+</script>
+</body>
+</html>
