@@ -1,6 +1,6 @@
 import React from 'react';
-// import { connect } from 'react-redux';
-import { connect } from './mini-redux/react-redux';
+import { connect } from 'react-redux';
+// import { connect } from './mini-redux/react-redux';
 import { removeTodo, toggleTodo } from './store/actions/actions';
 
 @connect(

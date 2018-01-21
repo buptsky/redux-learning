@@ -6,14 +6,30 @@
 </head>
 <body>
 <script>
-  let dispatch = function () {
-    console.log(1);
+  var a = [1,2,3];
+  var b = a;
+
+
+  a = b;
+  for (var i = 0; i < a.length; i++) {
+    if (i === 2) {
+      b = a.slice().push(4);
+      console.log(a);
+    }
+    console.log(i);
   }
-  let mid = {dispath: dispatch}
-  dispatch = function () {
-    console.log(2);
-  }
-  mid.dispath();
+
+
+//  a.forEach((i) => {
+//    if (i === 3) {
+//      a.push(4);
+//    }
+//    console.log(i);
+//  })
+
+
+
+
 </script>
 </body>
 </html>

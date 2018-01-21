@@ -1,6 +1,6 @@
 import React from 'react';
-// import { connect } from 'react-redux';
-import { connect } from './mini-redux/react-redux';
+import { connect } from 'react-redux';
+// import { connect } from './mini-redux/react-redux';
 import reduxLogo from './asset/redux.png';
 import Todo from './Todo';
 import { addTodo, addTodoAsync, removeTodo, toggleTodo, setFilter } from './store/actions/actions';
