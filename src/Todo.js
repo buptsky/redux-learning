@@ -13,6 +13,10 @@ import { removeTodo, toggleTodo } from './store/actions/actions';
 )
 class Todo extends React.Component {
 
+  componentDidUpdate() {
+    console.log('todo update');
+  }
+  
   render() {
     console.log(this.props);
     const { todoList, filter, loading } = this.props;

@@ -24,6 +24,10 @@ class App extends React.Component {
     this.saveToLocal(nextProps.todoList, nextProps.filter);
   }
 
+  componentDidUpdate() {
+    console.log('app update');
+  }
+
   saveToLocal = (todoList, filter) => {
     localStorage.setItem('redux_learning_todoList', JSON.stringify(todoList));
     localStorage.setItem('redux_learning_filter', filter);
